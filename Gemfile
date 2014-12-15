@@ -38,6 +38,10 @@ group :development, :test do
   gem 'pry-rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 #AP gems
 gem 'zendesk_api'
 gem 'holidays'
