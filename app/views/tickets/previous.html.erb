@@ -1,0 +1,12 @@
+<div class="monthly_title">
+  <%= (Time.now-1.month).strftime("%B") %>
+  <div class="subtitle">CUSTOMER SUCCESS</div>
+</div>
+
+<div class="month_nav col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <%= link_to(month_path) do %>
+    Current Month <i class="fa fa-caret-right"></i>
+  <% end %>
+</div>
+
+<%= render 'month_stats' %>

@@ -1,0 +1,25 @@
+<%= form_for(@refresh_audit) do |f| %>
+  <% if @refresh_audit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@refresh_audit.errors.count, "error") %> prohibited this refresh_audit from being saved:</h2>
+
+      <ul>
+      <% @refresh_audit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :period %><br>
+    <%= f.text_field :period %>
+  </div>
+  <div class="field">
+    <%= f.label :stamp %><br>
+    <%= f.datetime_select :stamp %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

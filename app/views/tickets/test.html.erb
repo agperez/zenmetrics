@@ -1,0 +1,10 @@
+Hello :)
+
+
+<%= @ids %>
+<br>
+<%= @ids_sanitized %>
+<br>
+<% @tickets.each do |t| %>
+  ID: <%= t.id %>, Created: <%= t.created_at %>, Updated: <%= t.updated_at %>, METRIC Reply Time: <%= t.metric_set.reply_time_in_minutes.business %><br>
+<% end %>

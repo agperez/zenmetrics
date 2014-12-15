@@ -1,0 +1,47 @@
+<div class="monthly_title product pro">
+  Prospector
+</div>
+
+<div class="row">
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count pro"><%= @prospector_tix.count %></div>
+    <div class="monthly count_title">New Tickets</div>
+    <div class="monthly count_sub"><%= @pro_total_closed %> Closed</div>
+  </div>
+
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count pro"><%= @pro_first_avg.round(1) %></div>
+    <div class="monthly count_title">Average First Response</div>
+    <div class="monthly count_sub"></div>
+  </div>
+
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count pro"><%= @pro_close_avg.round(1) %></div>
+    <div class="monthly count_title">Average Time to Close</div>
+    <div class="monthly count_sub"></div>
+  </div>
+</div>
+
+<div class="monthly_title product cad">
+  Cadence
+</div>
+
+<div class="row">
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count cad"><%= @cadence_tix.count %></div>
+    <div class="monthly count_title">New Tickets</div>
+    <div class="monthly count_sub"><%= @cad_total_closed %> Closed</div>
+  </div>
+
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count cad"><%= @cad_first_avg.round(1) %></div>
+    <div class="monthly count_title">Average First Response</div>
+    <div class="monthly count_sub"></div>
+  </div>
+
+  <div class="monthly_container col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="monthly count cad"><%= @cad_close_avg.round(1) %></div>
+    <div class="monthly count_title">Average Time to Close</div>
+    <div class="monthly count_sub"></div>
+  </div>
+</div>

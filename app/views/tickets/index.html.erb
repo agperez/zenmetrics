@@ -1,0 +1,39 @@
+<h1>Listing tickets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Zenid</th>
+      <th>Opened</th>
+      <th>Closed</th>
+      <th>First assigned</th>
+      <th>Closed time</th>
+      <th>Reply time</th>
+      <th>Product</th>
+      <th>Agent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.zenid %></td>
+        <td><%= ticket.opened %></td>
+        <td><%= ticket.closed %></td>
+        <td><%= ticket.first_assigned %></td>
+        <td><%= ticket.closed_time %></td>
+        <td><%= ticket.reply_time %></td>
+        <td><%= ticket.product %></td>
+        <td><%= ticket.agent %></td>
+        <td><%= link_to 'Show', ticket %></td>
+        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ticket', new_ticket_path %>

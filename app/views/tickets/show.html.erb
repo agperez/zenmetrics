@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Zenid:</strong>
+  <%= @ticket.zenid %>
+</p>
+
+<p>
+  <strong>Opened:</strong>
+  <%= @ticket.opened %>
+</p>
+
+<p>
+  <strong>Closed:</strong>
+  <%= @ticket.closed %>
+</p>
+
+<p>
+  <strong>First assigned:</strong>
+  <%= @ticket.first_assigned %>
+</p>
+
+<p>
+  <strong>Closed time:</strong>
+  <%= @ticket.closed_time %>
+</p>
+
+<p>
+  <strong>Reply time:</strong>
+  <%= @ticket.reply_time %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @ticket.product %>
+</p>
+
+<p>
+  <strong>Agent</strong>
+  <%= @ticket.agent %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

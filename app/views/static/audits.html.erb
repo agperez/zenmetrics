@@ -1,0 +1,22 @@
+TICKETS WITH AUDIT METRICS
+<% i=0 %>
+<% sum=0 %>
+<% @tickets.each do |t| %>
+  <% i+=1 %>
+  <h1>Ticket #: <%= t.id %></h1>
+  <% t.custom_fields.each do |c| %>
+    <% if c.id == 22455799 %>
+      <p>(Product: <%= c.value %>)</p>
+    <% end %>
+  <% end %>
+  <h3>Created at: <%= t.metric_set.created_at %></h3>
+  <h3>Initially Assigned at: <%= t.metric_set.initially_assigned_at %></h3>
+  <h3>Assignee Updated at: <%= t.metric_set.assignee_updated_at %></h3>
+  <h3>First Solved at: <%= t.metric_set.solved_at %></h3>
+  <h3>Reply Time (first): <%= t.metric_set.reply_time_in_minutes.calendar %></h3><% if t.metric_set.reply_time_in_minutes.calendar then sum += t.metric_set.reply_time_in_minutes.calendar end %>
+  <% if t.metric_set.solved_at %>
+    <h3>Time from Created to First Solved: <%= time_diff(t.metric_set.created_at, t.metric_set.solved_at) %>
+  <% end %>
+<% end %>
+<br>
+Average Reply Time: <%= sum.to_f / i %>

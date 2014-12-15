@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @refresh_audit.period %>
+</p>
+
+<p>
+  <strong>Stamp:</strong>
+  <%= @refresh_audit.stamp %>
+</p>
+
+<%= link_to 'Edit', edit_refresh_audit_path(@refresh_audit) %> |
+<%= link_to 'Back', refresh_audits_path %>

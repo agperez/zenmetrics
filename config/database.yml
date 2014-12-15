@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  database: zenmetrics_development
+  host: localhost
+  min_messages: WARNING
+
+test:
+  adapter: postgresql
+  database: zenmetrics_test
+  host: localhost
+  min_messages: WARNING
+
+production:
+  adapter: postgresql
+  database: zenmetrics_production
+  host: localhost
+  min_messages: WARNING
