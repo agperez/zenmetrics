@@ -6,6 +6,12 @@ Rails.application.routes.draw do
 
   resources :tickets
 
+  namespace :api, defaults: {format: :json} do
+    resources :tickets do
+      get :stats, on: :collection
+    end
+  end
+
   root 'tickets#month'
 
   match '/audits', to: 'static#audits', via: 'get'
