@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :gifs
+
   resources :refresh_audits
 
   resources :users
@@ -9,6 +11,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :tickets do
       get :stats, on: :collection
+    end
+
+    resources :gifs do
+      get :get, on: :collection
     end
   end
 
