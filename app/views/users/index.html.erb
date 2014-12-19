@@ -1,29 +1,13 @@
-<h1>Listing users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Zenid</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.zenid %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+<%= Time.now.strftime("%B") %>
+<% @users.each do |user| %>
+  <% tickets = user.tickets.where("opened >= ? AND opened <= ?", Time.now.beginning_of_month, Time.now.end_of_month) %>
+  <div class="user_name">
+    <%= user.name %>:
+  </div>
+  <div class="user_stats">
+    Tickets: <%= tickets.count %>
+    <br>
+    Avg Time to First Response: <%= get_average(tickets).round(1) %>
+  </div>
+  <br>
+<% end %>

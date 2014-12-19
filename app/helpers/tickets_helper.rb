@@ -100,6 +100,18 @@ module TicketsHelper
     end
   end
 
+  def get_average(tickets)
+    first_sum = 0
+    i = 0
+    tickets.each do |t|
+      if t.closed_time && t.reply_time
+        first_sum += t.reply_time
+        i += 1
+      end
+    end
+    return first_sum.to_f / i
+  end
+
   def make_month_view(month, audit)
     @prospector_tix = Ticket.in_month(month, "prospector")
     @cadence_tix    = Ticket.in_month(month, "cadence")
