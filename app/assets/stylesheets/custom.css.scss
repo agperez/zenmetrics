@@ -15,26 +15,36 @@
 body .container {
   line-height: 1.428571429;
 }
-.monthly_title {
-  font-size: 8em;
+.monthly_title, .weekly_title {
   text-align: center;
   color: #6b6b6b;
   font-family: Arvo;
   font-weight: 400;
 }
 
-.monthly_title.product {
+.monthly_title {
+  font-size: 8em;
+}
+
+.weekly_title {
+  font-size: 4em;
+}
+
+.monthly_title.product,
+.weekly_title.product {
   font-size: 3em;
   font-weight: 700;
   margin-bottom: -.6em;
 }
 
-.monthly_title.product.pro {
+.monthly_title.product.pro,
+.weekly_title.product.pro {
   color: #246C93;
   margin-top: 2.5em;
 }
 
-.monthly_title.product.cad {
+.monthly_title.product.cad,
+.weekly_title.product.cad {
   color: #D87E07;
 }
 
@@ -47,13 +57,14 @@ body .container {
   margin-bottom: .8em;
 }
 
-.monthly_top_links, .monthly_top_links a, .month_nav, .month_nav a {
+.monthly_top_links, .monthly_top_links a, .month_nav, .month_nav a,
+.week_nav, .week_nav a {
   text-align: center;
   margin-bottom: 20px;
   color: darkgray;
 }
 
-.monthly_top_links, .monthly_top_links a {
+.monthly_top_links, .monthly_top_links a, .weekly_top_links, .weekly_top_links a {
   font-size: 23px;
 }
 
@@ -61,11 +72,11 @@ body .container {
   font-size: 12px;
 }
 
-.month_nav, .month_nav a{
+.month_nav, .month_nav a, .week_nav, .week_nav a{
   font-size: 18px;
 }
 
-.month_nav a {
+.month_nav a, .week_nav a{
   border: solid 1px #A3A3A3;
   padding: 7px;
   border-radius: 8px;
@@ -76,16 +87,16 @@ body .container {
   font-size: 14px;
 }
 
-.monthly_top_links a, .month_nav a {
+.monthly_top_links a, .month_nav a, .week_nav a{
   &:hover {
     text-decoration: none;
   }
 }
-.monthly_container {
+.monthly_container, .weekly_container {
   height: 200px
 }
 
-.monthly {
+.monthly, .weekly {
   text-align: center;
   //font-weight: bold;
   font-family: 'Arvo', serif;
@@ -115,7 +126,7 @@ body .container {
 }
 
 @media (max-width: 767px) {
-  .monthly_title {
+  .monthly_title, .weekly_title {
     font-size: 4em;
   }
 }

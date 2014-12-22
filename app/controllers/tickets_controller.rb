@@ -6,13 +6,6 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
-  def stats
-    stats = {
-      cadence_tickets: Ticket.in_month(month, "cadence")
-    }
-    format.json { render json: stats }
-  end
-
   def refresh_day
     ids = []
     client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|
@@ -43,6 +36,16 @@ class TicketsController < ApplicationController
 
   def previous
     make_month_view(Time.now - 1.month, false)
+  end
+
+  def week
+    make_week_view(Time.now)
+    make_days
+  end
+
+  def previous_week
+    make_week_view(Time.now - 1.week)
+    make_days
   end
 
   def new

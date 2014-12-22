@@ -1,13 +1,16 @@
 <%= Time.now.strftime("%B") %>
 <% @users.each do |user| %>
   <% tickets = user.tickets.where("opened >= ? AND opened <= ?", Time.now.beginning_of_month, Time.now.end_of_month) %>
+  <% tix_avg = get_average(tickets) %>
   <div class="user_name">
     <%= user.name %>:
   </div>
   <div class="user_stats">
-    Tickets: <%= tickets.count %>
+    Tickets: <%= tix_avg["total"] %>
     <br>
-    Avg Time to First Response: <%= get_average(tickets).round(1) %>
+    Avg Time to First Response: <%= tix_avg["first"].round(1) %>
+    <br>
+    Avg Time to Close: <%= tix_avg["close"].round(1) %>
   </div>
   <br>
 <% end %>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   match '/agents', to: 'tickets#agents', via: 'get'
   match '/refresh_day', to: 'tickets#refresh_day', via: 'get'
   match '/previous', to: 'tickets#previous', via: 'get'
+  match '/week', to: 'tickets#week', via: 'get'
+  match '/previous_week', to: 'tickets#previous_week', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

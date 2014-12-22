@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(agent_type: "agent")
+    # User.all.reject{ |u| u.tickets.empty? }
   end
 
   def refresh

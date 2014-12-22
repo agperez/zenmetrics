@@ -1,0 +1,12 @@
+<div class="weekly_title">
+  Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %>
+  <div class="subtitle">CUSTOMER SUCCESS</div>
+</div>
+
+<div class="week_nav col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <%= link_to(week_path) do %>
+  <i class="fa fa-caret-right"></i> Current Week
+  <% end %>
+</div>
+
+<%= render 'week_stats' %>

@@ -101,49 +101,92 @@ module TicketsHelper
   end
 
   def get_average(tickets)
+    avg = Hash.new
     first_sum = 0
+    close_sum = 0
     i = 0
     tickets.each do |t|
       if t.closed_time && t.reply_time
         first_sum += t.reply_time
+        close_sum += t.closed_time
         i += 1
       end
     end
-    return first_sum.to_f / i
+    avg["first"] = first_sum.to_f / i
+    avg["close"] = close_sum.to_f / i
+    avg["total"] = i
+    return avg
   end
 
   def make_month_view(month, audit)
-    @prospector_tix = Ticket.in_month(month, "prospector")
-    @cadence_tix    = Ticket.in_month(month, "cadence")
+    @prospector_tix = Ticket.by_day("month", month, "prospector")
+    @cadence_tix    = Ticket.by_day("month", month, "cadence")
     @audit          = RefreshAudit.last_refreshed("day") if audit == true
 
-    first_sum = 0
-    close_sum = 0
-    i=0
-    @prospector_tix.each do |t|
-      if t.closed_time && t.reply_time
-        close_sum += t.closed_time
-        first_sum += t.reply_time
-        i+=1
-      end
-    end
-    @pro_total_closed = i
-    @pro_first_avg = first_sum.to_f / i
-    @pro_close_avg = close_sum.to_f / i
+    pro_averages = get_average(@prospector_tix)
+    @pro_total_closed = pro_averages["total"]
+    @pro_first_avg    = pro_averages["first"]
+    @pro_close_avg    = pro_averages["close"]
 
-    cad_first_sum = 0
-    cad_close_sum = 0
-    cad_i=0
-    @cadence_tix.each do |t|
-      if t.closed_time && t.reply_time
-        cad_close_sum += t.closed_time
-        cad_first_sum += t.reply_time
-        cad_i+=1
-      end
-    end
-    @cad_total_closed = cad_i
-    @cad_first_avg = cad_first_sum.to_f / cad_i
-    @cad_close_avg = cad_close_sum.to_f / cad_i
+    cad_averages = get_average(@cadence_tix)
+    @cad_total_closed = cad_averages["total"]
+    @cad_first_avg    = cad_averages["first"]
+    @cad_close_avg    = cad_averages["close"]
   end
 
+  def make_week_view(week)
+    @prospector_tix   = Ticket.by_day("week", week, "prospector")
+    @cadence_tix      = Ticket.by_day("week", week, "cadence")
+  end
+
+  def make_days
+    @p_monday     = []
+    @p_tuesday    = []
+    @p_wednesday  = []
+    @p_thursday   = []
+    @p_friday     = []
+    @p_weekend    = []
+    @prospector_tix.each do |t|
+      case t.opened.strftime("%A")
+      when "Monday"
+        @p_monday << t
+      when "Tuesday"
+        @p_tuesday << t
+      when "Wednesday"
+        @p_wednesday << t
+      when "Thursday"
+        @p_thursday << t
+      when "Friday"
+        @p_friday << t
+      when "Saturday"
+        @p_weekend << t
+      when "Sunday"
+        @p_weekend << t
+      end
+    end
+    @c_monday     = []
+    @c_tuesday    = []
+    @c_wednesday  = []
+    @c_thursday   = []
+    @c_friday     = []
+    @c_weekend    = []
+    @cadence_tix.each do |t|
+      case t.opened.strftime("%A")
+      when "Monday"
+        @c_monday << t
+      when "Tuesday"
+        @c_tuesday << t
+      when "Wednesday"
+        @c_wednesday << t
+      when "Thursday"
+        @c_thursday << t
+      when "Friday"
+        @c_friday << t
+      when "Saturday"
+        @c_weekend << t
+      when "Sunday"
+        @c_weekend << t
+      end
+    end
+  end
 end
