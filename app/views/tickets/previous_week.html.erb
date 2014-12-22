@@ -1,5 +1,5 @@
 <div class="weekly_title">
-  Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %>
+  Week of <%= (Time.now-1.week).beginning_of_week.strftime("%B %d, %Y") %>
   <div class="subtitle">CUSTOMER SUCCESS</div>
 </div>
 
