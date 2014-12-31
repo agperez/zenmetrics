@@ -24,9 +24,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-
 group :development do
   gem 'spring'
   gem 'better_errors'
@@ -45,3 +42,4 @@ end
 #AP gems
 gem 'zendesk_api'
 gem 'holidays'
+gem 'rufus-scheduler', '3.0.2'

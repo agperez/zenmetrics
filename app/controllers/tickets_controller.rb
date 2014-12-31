@@ -18,6 +18,7 @@ class TicketsController < ApplicationController
     end
 
     RefreshAudit.create(period: 'day', stamp: Time.now)
+
     redirect_to month_path
   end
 
