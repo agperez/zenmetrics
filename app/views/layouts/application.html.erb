@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Zenmetrics for *Great Success*</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Zenmetrics for *Great Success*</title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
 
-    <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!--Start of Zopim Live Chat Script-->
-    <script type="text/javascript">
-      window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-        $.src='//v2.zopim.com/?2gety25cQdFeDmzczaCR1EcE7RdBRNDY';z.t=+new Date;$.
-        type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-    </script>
-    <!--End of Zopim Live Chat Script-->
-  </head>
-  <body>
+      <!--Start of Zopim Live Chat Script-->
+      <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+          _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+          $.src='//v2.zopim.com/?2gety25cQdFeDmzczaCR1EcE7RdBRNDY';z.t=+new Date;$.
+          type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
-    <div class="container">
-      <%= yield %>
-    </div>
+          $zopim(function() {
+            var email = $zopim.livechat.getEmail();
+            $zopim.livechat.setNotes(	email );
 
-  </body>
-</html>
+
+          });
+      </script>
+      <!--End of Zopim Live Chat Script-->
+    </head>
+    <body>
+
+      <div class="container">
+        <%= yield %>
+      </div>
+
+    </body>
+  </html>

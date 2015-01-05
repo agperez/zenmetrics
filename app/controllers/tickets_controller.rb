@@ -6,6 +6,23 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
+  def start_refresh
+    SCHEDULER.every '30s', :first_in => 0 do |job|
+      ids = []
+      client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|
+        ids << t.id
+      end
+
+      ids_sanitized = ids.map(&:inspect).join(', ')
+      client.tickets.show_many(:ids => ids_sanitized).include(:metric_sets).each do |t|
+        import_ticket(t)
+      end
+
+      RefreshAudit.create(period: 'day', stamp: Time.now)
+    end
+    redirect_to month_path
+  end
+
   def refresh_day
     ids = []
     client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|

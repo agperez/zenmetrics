@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   root 'tickets#month'
 
   match '/audits', to: 'static#audits', via: 'get'
+  match '/start_refresh', to: 'tickets#start_refresh', via: 'get'
   match '/refresh_all', to: 'tickets#refresh', via: 'get'
   match '/refresh_users', to: 'users#refresh', via: 'get'
   match '/month', to: 'tickets#month', via: 'get'

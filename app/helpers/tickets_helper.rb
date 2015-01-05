@@ -112,8 +112,9 @@ module TicketsHelper
         i += 1
       end
     end
-    avg["first"] = first_sum.to_f / i
-    avg["close"] = close_sum.to_f / i
+
+    avg["first"] = (i > 0 ? first_sum.to_f / i : 0)
+    avg["close"] = (i > 0 ? close_sum.to_f / i : 0)
     avg["total"] = i
     return avg
   end
