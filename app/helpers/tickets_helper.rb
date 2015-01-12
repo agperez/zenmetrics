@@ -14,6 +14,7 @@ module TicketsHelper
     created = business_time(originally_created) if originally_created
 
     product = ""
+    level = ""
     closed_time = 0
 
     if solved and created < solved
@@ -23,6 +24,8 @@ module TicketsHelper
     t.custom_fields.each do |c|
       if c.id == 22455799
         product = c.value
+      elsif c.id == 23381279
+        level = c.value
       end
     end
 
@@ -35,7 +38,8 @@ module TicketsHelper
                     reply_time: t.metric_set.reply_time_in_minutes.business,
                     agent: t.assignee_id, product: product, closed_time: closed_time,
                     user_id: @user.id, originally_created: originally_created,
-                    originally_closed: originally_solved, replies: t.metric_set.replies)
+                    originally_closed: originally_solved, replies: t.metric_set.replies,
+                    level: level)
   end
 
   def business_time(datetime)
