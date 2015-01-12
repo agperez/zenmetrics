@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   end
 
   def start_refresh
-    SCHEDULER.every '30s', :first_in => 0 do |job|
+    SCHEDULER.every '2m', :first_in => 0 do |job|
       ids = []
       client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|
         ids << t.id
