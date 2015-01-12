@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
         import_ticket(t)
       end
 
-      r = RefreshAudit.find_or_create_by(id: 5947)
+      r = RefreshAudit.find_or_create_by(id: 8000)
       r.stamp = Time.now
       r.period = "day"
       r.save
@@ -37,7 +37,7 @@ class TicketsController < ApplicationController
       import_ticket(t)
     end
 
-    r = RefreshAudit.find_or_create_by(id: 5947)
+    r = RefreshAudit.find_or_create_by(id: 8000)
     r.stamp = Time.now
     r.period = "day"
     r.save
@@ -50,7 +50,7 @@ class TicketsController < ApplicationController
       import_ticket(t)
     end
 
-    r = RefreshAudit.find_or_create_by(id: 5947)
+    r = RefreshAudit.find_or_create_by(id: 8000)
     r.stamp = Time.now
     r.period = "day"
     r.save
