@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   match '/previous', to: 'tickets#previous', via: 'get'
   match '/week', to: 'tickets#week', via: 'get'
   match '/previous_week', to: 'tickets#previous_week', via: 'get'
+  match '/launcher', to: 'static#launcher', via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
