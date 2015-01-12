@@ -18,9 +18,8 @@ class TicketsController < ApplicationController
         import_ticket(t)
       end
 
-      r = RefreshAudit.find_or_create_by(id: 8000)
+      r = RefreshAudit.find_or_create_by(period: "day")
       r.stamp = Time.now
-      r.period = "day"
       r.save
     end
     redirect_to month_path
@@ -37,9 +36,8 @@ class TicketsController < ApplicationController
       import_ticket(t)
     end
 
-    r = RefreshAudit.find_or_create_by(id: 8000)
+    r = RefreshAudit.find_or_create_by(period: "day")
     r.stamp = Time.now
-    r.period = "day"
     r.save
 
     redirect_to month_path
@@ -50,9 +48,8 @@ class TicketsController < ApplicationController
       import_ticket(t)
     end
 
-    r = RefreshAudit.find_or_create_by(id: 8000)
+    r = RefreshAudit.find_or_create_by(period: "day")
     r.stamp = Time.now
-    r.period = "day"
     r.save
     redirect_to month_path
   end
