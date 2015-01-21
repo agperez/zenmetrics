@@ -194,4 +194,40 @@ module TicketsHelper
       end
     end
   end
+
+  def get_tiers(pro, cad)
+    @tier1 = []
+    @tier2 = []
+    @tier3 = []
+
+    pro.each do |t|
+      if t.level == "tier_1"
+        @tier1 << t
+      elsif t.level == "tier_2"
+        @tier2 << t
+      elsif t.level == "tier_3"
+        @tier3 << t
+      end
+    end
+
+    cad.each do |t|
+      if t.level == "tier_1"
+        @tier1 << t
+      elsif t.level == "tier_2"
+        @tier2 << t
+      elsif t.level == "tier_3"
+        @tier3 << t
+      end
+    end
+
+    t1_avg = get_average(@tier1)
+    t2_avg = get_average(@tier2)
+    t3_avg = get_average(@tier3)
+    @tier1_response = t1_avg["first"]
+    @tier2_response = t2_avg["first"]
+    @tier3_response = t3_avg["first"]
+
+
+  end
+
 end

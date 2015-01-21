@@ -4,6 +4,20 @@
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
 
+.all_stats.title {
+  font-size: 34px;
+}
+
+.all_stats.headline {
+  font-size: 34px;
+  background-color: azure;
+  margin-top: 18px;
+}
+
+.all_stats.result {
+  font-size: 18px;
+}
+
 .launch-link {
   font-style: normal;
   font-size: 2em;

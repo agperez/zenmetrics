@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
   end
 
   def start_refresh
-    SCHEDULER.every '2m', :first_in => 0 do |job|
+    SCHEDULER.every '5m', :first_in => 0 do |job|
       ids = []
       client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|
         ids << t.id
@@ -28,6 +28,24 @@ class TicketsController < ApplicationController
   def refresh_day
     ids = []
     client.search(:query => "type:ticket created>#{(Time.now-1.days).strftime("%Y-%m-%d")}").each do |t|
+      ids << t.id
+    end
+
+    ids_sanitized = ids.map(&:inspect).join(', ')
+    client.tickets.show_many(:ids => ids_sanitized).include(:metric_sets).each do |t|
+      import_ticket(t)
+    end
+
+    r = RefreshAudit.find_or_create_by(period: "day")
+    r.stamp = Time.now
+    r.save
+
+    redirect_to month_path
+  end
+
+  def refresh_month
+    ids = []
+    client.search(:query => "type:ticket created>#{(Time.now.beginning_of_month).strftime("%Y-%m-%d")}").each do |t|
       ids << t.id
     end
 
@@ -70,6 +88,13 @@ class TicketsController < ApplicationController
   def previous_week
     make_week_view(Time.now - 1.week)
     make_days
+  end
+
+  def all_stats
+    make_month_view(Time.now, false)
+    @total_combined = @prospector_tix.count + @cadence_tix.count
+    @average_combined = ((@pro_first_avg*@pro_total_closed)+(@cad_first_avg*@cad_total_closed))/(@pro_total_closed+@cad_total_closed)
+    get_tiers(@prospector_tix, @cadence_tix)
   end
 
   def new
