@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   match '/month', to: 'tickets#month', via: 'get'
   match '/agents', to: 'tickets#agents', via: 'get'
   match '/refresh_day', to: 'tickets#refresh_day', via: 'get'
-  match '/refresh_month', to: 'tickets#refresh_month', via: 'get'
+  match '/r4', to: 'tickets#refresh_four', via: 'get'
   match '/previous', to: 'tickets#previous', via: 'get'
   match '/week', to: 'tickets#week', via: 'get'
   match '/previous_week', to: 'tickets#previous_week', via: 'get'

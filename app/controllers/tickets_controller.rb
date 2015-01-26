@@ -43,9 +43,9 @@ class TicketsController < ApplicationController
     redirect_to month_path
   end
 
-  def refresh_month
+  def refresh_four
     ids = []
-    client.search(:query => "type:ticket created>#{(Time.now.beginning_of_month).strftime("%Y-%m-%d")}").each do |t|
+    client.search(:query => "type:ticket created>#{(Time.now-4.days).strftime("%Y-%m-%d")}").each do |t|
       ids << t.id
     end
 
